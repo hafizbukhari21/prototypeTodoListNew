@@ -159,8 +159,8 @@ export default class Home extends React.Component{
                 
 
                 <div class="container mt-5 ">
-                <div class="card" style={{border:"1px solid gray"}}>
-                    <div class="card-header bg-warning">
+                <div class="card" style={{border:"0.5px solid gray"}}>
+                    <div class="card-header text-light bg-dark">
                     Todo List
                     
                     </div>
@@ -223,7 +223,7 @@ export default class Home extends React.Component{
                         
                                 <div class="col-sm-6 mt-3">
                                    <div class="card">
-                                        <h5 class="card-header">{todoList.title} - {todoList.category}</h5>
+                                        <h5 class="card-header bg-primary text-white">{todoList.title} - {todoList.category}</h5>
                                         <div class="card-body">
                                             <h5 class="card-title"> {todoList.desc} </h5>
                                             <p class="card-text text-secondary"> {todoList.city},&nbsp; {todoList.city_temp}<sup>0</sup>C </p>
