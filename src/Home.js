@@ -139,7 +139,7 @@ export default class Home extends React.Component{
         return(
             <Fragment>
                 
-                <div class="container mt-5">
+                {/* <div class="container mt-5">
                 <form>   
                 <div class="form-group">
                             <label for="exampleFormControlSelect1">Category</label>
@@ -155,7 +155,7 @@ export default class Home extends React.Component{
                         
                 
                 </form>
-                </div>
+                </div> */}
                 
 
                 <div class="container mt-5 ">
