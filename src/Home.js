@@ -89,7 +89,7 @@ export default class Home extends React.Component{
             this.setState({loading:true});
             setTimeout(()=>{
                     this.setState({loading:false});
-                },2000);
+                },1000);
 
             let local_todo_list = this.state.todo_list;
             this.getTemprature(this.state.pushCity);
@@ -201,12 +201,14 @@ export default class Home extends React.Component{
                         </div>
 
 
-                        <button  class="btn btn-primary" onClick={this.handleSubmit} disabled={loading}>
-                            {loading && <div class="spinner-border text-light" role="status">
+                       
+
+                        {!loading && <button  class="btn btn-primary" onClick={this.handleSubmit} disabled={loading}>
+                           Add Todo
+                        </button>}
+                        {loading && <div class="spinner-border text-primary" role="status">
                                 <span class="sr-only">Loading...</span>
                             </div>}
-                            {!loading && <span>Add Todo</span> }
-                        </button>
                         
                     </div>
                     
