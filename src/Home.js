@@ -49,7 +49,7 @@ export default class Home extends React.Component{
 
     async getTemprature(city)  {
 
-        if(city==""){
+        if(city==""||city==undefined||city==null){
             city="jakarta,id";
         }
         
@@ -180,7 +180,7 @@ export default class Home extends React.Component{
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Category</label>
                             <select class="form-control" id="exampleFormControlSelect1" name="pushCategory" onChange={this.handlechage}>
-                            <option  >Choose</option>
+                            <option  ></option>
                             <option value="Hollyday" >Hollyday</option>
                             <option value="Work">Work</option>
                             <option value="School">School</option>
@@ -192,7 +192,7 @@ export default class Home extends React.Component{
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">City</label>
                             <select class="form-control" id="exampleFormControlSelect1" name="pushCity" onChange={this.handlechage} >
-                            <option >Choose</option>
+                            <option ></option>
                             <option value="jakarta,id" >Jakarta</option>
                             <option value="london,uk">London</option>
                             <option value="tokyo,jp">Tokyo</option>
