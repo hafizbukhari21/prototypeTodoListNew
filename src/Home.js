@@ -27,6 +27,7 @@ export default class Home extends React.Component{
 
             int:[],
             getIndex:0,
+            loading:false
 
 
             
@@ -82,8 +83,14 @@ export default class Home extends React.Component{
 
     handleSubmit(){
         
+        
         if(this.state.pushTitle==""||this.state.pushDesc==""||this.state.pushCategory==""||this.state.pushCity=="") alert("Mohon Diisi Data yang masih kosong")
         else{
+            this.setState({loading:true});
+            setTimeout(()=>{
+                    this.setState({loading:false});
+                },2000);
+
             let local_todo_list = this.state.todo_list;
             this.getTemprature(this.state.pushCity);
             let getTemp = sessionStorage.getItem("temp")-273.15;
@@ -126,7 +133,7 @@ export default class Home extends React.Component{
 
  
     render(){
-
+        const {loading} =this.state;
         
 
         return(
@@ -194,7 +201,12 @@ export default class Home extends React.Component{
                         </div>
 
 
-                        <button  class="btn btn-primary" onClick={this.handleSubmit}>Add Todo</button>
+                        <button  class="btn btn-primary" onClick={this.handleSubmit} disabled={loading}>
+                            {loading && <div class="spinner-border text-light" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>}
+                            {!loading && <span>Add Todo</span> }
+                        </button>
                         
                     </div>
                     
