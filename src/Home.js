@@ -12,6 +12,7 @@ export default class Home extends React.Component{
             pushCategory:'',
             pushCity :'',
             pushCity_temp: '',
+            pushDone:false,
 
             todo_list:[],
             
@@ -21,7 +22,8 @@ export default class Home extends React.Component{
                 desc:"",
                 category:'',
                 city:'',
-                city_temp:''
+                city_temp:'',
+                done:false
                 
             },
 
@@ -44,6 +46,16 @@ export default class Home extends React.Component{
         this.delete = this.delete.bind(this); 
         this.getTemprature = this.getTemprature.bind(this);
         this.searchingCategory =this.searchingCategory.bind(this);
+        this.checkFinish = this.checkFinish.bind(this);
+    }
+
+    checkFinish(index){
+       let local_todo_list = this.state.todo_list;
+       let title = JSON.stringify(local_todo_list[index].title)
+       local_todo_list[index].done=true;
+       console.log(this.state.todo_list);
+       alert(title+" Finished");
+       
     }
 
 
@@ -107,7 +119,8 @@ export default class Home extends React.Component{
                 desc:this.state.pushDesc,
                 category:this.state.pushCategory,
                 city:this.state.pushCity,
-                city_temp:getTemp
+                city_temp:getTemp,
+                done:false
                 
             }
             
@@ -134,6 +147,7 @@ export default class Home extends React.Component{
  
     render(){
         const {loading} =this.state;
+        const {done} = this.state.todo_list;
         
 
         return(
@@ -223,10 +237,17 @@ export default class Home extends React.Component{
                         
                                 <div class="col-sm-6 mt-3">
                                    <div class="card">
-                                        <h5 class="card-header bg-primary text-white">{todoList.title} - {todoList.category}</h5>
+
+                        {!done &&   <h5 class="card-header bg-primary text-white">{todoList.title} - {todoList.category}</h5> }
+                        {done &&   <h5 class="card-header bg-success text-white">{todoList.title} - {todoList.category}</h5> }
                                         <div class="card-body">
+
                                             <h5 class="card-title"> {todoList.desc} </h5>
-                                            <p class="card-text text-secondary"> {todoList.city},&nbsp; {todoList.city_temp}<sup>0</sup>C </p>
+                                            <p class="card-text text-secondary"> {todoList.city},&nbsp; {todoList.city_temp}<sup>0</sup> </p>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="exampleCheck1"  onClick={() => this.checkFinish(parseInt(index))} value={index}/>
+                                                <label class="form-check-label" for="exampleCheck1">Finish</label>
+                                            </div>
                                             <a  class="btn btn-danger text-white" value={index} onClick={() => this.delete(parseInt(index))}>Delete</a>
                                         </div>
                                         </div>
