@@ -54,7 +54,7 @@ export default class Home extends React.Component{
        let title = JSON.stringify(local_todo_list[index].title)
        local_todo_list[index].done=true;
        console.log(this.state.todo_list);
-       alert(title+" Finished");
+       alert(title+" Finished \n Silahkan Cek Console untuk melihat Array");
        
     }
 
