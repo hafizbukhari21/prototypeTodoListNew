@@ -34,13 +34,7 @@ export default class Home extends React.Component{
 
             
         }
-        console.log(this.state.dummy);
-        
 
-       
-       
-
-  
         this.handlechage = this.handlechage.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.delete = this.delete.bind(this); 
@@ -49,13 +43,38 @@ export default class Home extends React.Component{
         this.checkFinish = this.checkFinish.bind(this);
     }
 
+    componentDidMount(){
+        const backup =  JSON.parse(localStorage.getItem("backup"));
+        console.log(backup);
+
+        this.setState({todo_list:backup})
+    
+    }
+
     checkFinish(index){
-       let local_todo_list = this.state.todo_list;
-       let title = JSON.stringify(local_todo_list[index].title)
-       local_todo_list[index].done=true;
-       console.log(this.state.todo_list);
-       alert(title+" Finished \n Silahkan Cek Console untuk melihat Array");
        
+        // let  stateCopy = Object.assign({}, this.state)
+        // stateCopy.todo_list[index].done = true
+        // this.setState({stateCopy})
+        // console.log(this.state.todo_list[index])
+        
+        let todo_list_temp = Object.values (this.state.todo_list)
+
+        todo_list_temp[index].category =  todo_list_temp[index].category+ ' - Finished';
+        this.setState({
+            todo_list:todo_list_temp
+        })
+
+        
+       
+       
+       
+    }
+    delete(index){
+        const todo_list = this.state.todo_list;
+        todo_list.splice(index,1);
+        this.setState({todo_list : todo_list});
+
     }
 
 
@@ -79,12 +98,7 @@ export default class Home extends React.Component{
         this.setState({[event.target.name]:event.target.value})      
     }
 
-    delete(index){
-        const todo_list = this.state.todo_list;
-        todo_list.splice(index,1);
-        this.setState({todo_list : todo_list});
-
-    }
+   
 
     searchingCategory(){
         // let index = this.setState.todo_list.find(item=>item.category =="Work");
@@ -93,7 +107,7 @@ export default class Home extends React.Component{
     }
 
 
-    handleSubmit(){
+    async handleSubmit(){
         
         
         if(this.state.pushTitle==""||this.state.pushDesc==""||this.state.pushCategory==""||this.state.pushCity=="") alert("Mohon Diisi Data yang masih kosong")
@@ -104,15 +118,10 @@ export default class Home extends React.Component{
                 },1000);
 
             let local_todo_list = this.state.todo_list;
-            this.getTemprature(this.state.pushCity);
+           await this.getTemprature(this.state.pushCity);
             let getTemp = sessionStorage.getItem("temp")-273.15;
             getTemp = getTemp.toFixed(2);
-            
-          
-            console.log("getTemp "+ getTemp);
-            
-    
-    
+                
             this.state.pushItem={
                 index:this.state.getIndex,
                 title:this.state.pushTitle,
@@ -125,14 +134,14 @@ export default class Home extends React.Component{
             }
             
             sessionStorage.removeItem("temp");
+            
     
             
             local_todo_list.unshift(this.state.pushItem);
     
             this.setState({todo_list:local_todo_list});
-            console.log(this.state.todo_list);
             
-            this.state.getIndex++;
+            localStorage.setItem("backup",JSON.stringify(this.state.todo_list))
         }
       
 
@@ -208,9 +217,13 @@ export default class Home extends React.Component{
                             <select class="form-control" id="exampleFormControlSelect1" name="pushCity" onChange={this.handlechage} >
                             <option ></option>
                             <option value="jakarta,id" >Jakarta</option>
+                            <option value="berlin,de" >Berlin</option>
                             <option value="london,uk">London</option>
                             <option value="tokyo,jp">Tokyo</option>
                             <option value="surabaya,id">Surabaya</option>
+                            <option value="medan,id">Medan</option>
+                            <option value="bandung,id">Bandung</option>
+                            <option value="tangerang,id">tangerang</option>
                             </select>
                         </div>
 
@@ -238,8 +251,8 @@ export default class Home extends React.Component{
                                 <div class="col-sm-6 mt-3">
                                    <div class="card">
 
-                        {!done &&   <h5 class="card-header bg-primary text-white">{todoList.title} - {todoList.category}</h5> }
-                        {done &&   <h5 class="card-header bg-success text-white">{todoList.title} - {todoList.category}</h5> }
+                                    {!done &&  <h5 class="card-header bg-primary text-white">{todoList.title} - {todoList.category}</h5> }
+                                    {done &&   <h5 class="card-header bg-success text-white">asdsad</h5> }
                                         <div class="card-body">
 
                                             <h5 class="card-title"> {todoList.desc} </h5>
