@@ -184,7 +184,7 @@ export default class Home extends React.Component{
                 <div class="container mt-5 ">
                 <div class="card" style={{border:"0.5px solid gray"}}>
                     <div class="card-header text-light bg-dark">
-                    Todo List
+                    Todo List - 
                     
                     </div>
                     
@@ -239,6 +239,9 @@ export default class Home extends React.Component{
                         
                     </div>
                     
+                </div>
+                <div class="alert alert-dark mt-4" role="alert">
+                    By <a href="https://hafizbukhari21.github.io/portofolio/">M. Hafiz B.</a> - Ini gak pake api. Paling cuma api cuaca doang.. 
                 </div>  
                 </div>
 
