@@ -1,4 +1,5 @@
 {
+  "homepage": "https://wizardly-morse-e1ce57.netlify.app",
   "name": "prototype_new",
   "version": "0.1.0",
   "private": true,
@@ -11,6 +12,8 @@
     "react-scripts": "3.4.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
