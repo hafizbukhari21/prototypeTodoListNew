@@ -29,7 +29,8 @@ export default class Home extends React.Component{
 
             int:[],
             getIndex:0,
-            loading:false
+            loading:false,
+            done:false
 
 
             
